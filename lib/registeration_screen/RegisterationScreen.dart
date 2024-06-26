@@ -106,7 +106,11 @@ class RegisterationScreen extends StatelessWidget
                       if (value == null || value.isEmpty) {
                         return 'Please enter a valid password:';
                       }
-                      else if(value.length >= 8 && value != null)
+                      else if(value != passwordController.text)
+                        {
+                          return "Password and Confirm Password not match";
+                        }
+                      else if(value.length >= 8 && value == passwordController.text)
                       {
                         return null;
                       }
@@ -150,7 +154,8 @@ class RegisterationScreen extends StatelessWidget
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
 
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()), (route) => false);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                     // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()), (route) => false);
 
                       //   // print("Invaild credentials");
 
@@ -180,7 +185,11 @@ class RegisterationScreen extends StatelessWidget
                 children: [
                   Text("Already have an account?", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                   SizedBox(width: 10,),
-                  Text("Sign In", style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),)
+                  InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                      },
+                      child: Text("Sign In", style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),))
                 ],
               ),)
             ],

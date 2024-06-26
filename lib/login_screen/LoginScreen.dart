@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:loginuijunetask/registeration_screen/RegisterationScreen.dart';
 
 import '../home_screen/HomeScreen.dart';
 
@@ -131,7 +132,9 @@ class LoginScreen extends StatelessWidget
                     // you'd often call a server or save the information in a database.
                     // if (emailController.text == storedEmail && passwordController.text == storedPass)
                     // {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), (route) => false);
+
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                  //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), (route) => false);
 
                     // }
                     // else
@@ -161,7 +164,11 @@ class LoginScreen extends StatelessWidget
                 children: [
                   Text("Don't have an account?", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                   SizedBox(width: 10,),
-                  Text("Sign Up", style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),)
+                  InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterationScreen()));
+                      },
+                      child: Text("Sign Up", style: TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),))
                 ],
               ),
             )
